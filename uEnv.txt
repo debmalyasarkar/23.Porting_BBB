@@ -1,0 +1,17 @@
+#Description - uEnv.txt for NFS Boot using TFTP
+#Author      - debmalyasarkar1@gmail.com
+#Date        - 20th March 2018
+
+
+ipaddr=10.0.0.111
+serverip=10.0.0.4
+dtb_addr=0x84000000
+kernel_addr=0x82000000
+dtb_file=am335x-boneblack.dtb
+kernel_file=zImage
+console=ttyO0,115200n8
+load_kernel=tftpboot ${kernel_addr} ${kernel_file}
+load_dtb=tftpboot ${dtb_addr} ${dtb_file}
+my_bootargs=setenv bootargs console=${console} {optargs} root=/dev/nfs rw nfsroot=${serverip}:/usr/rootfs ip=${ipaddr}:::::eth0
+uenvcmd=run load_dtb; run load_kernel; run my_bootargs; bootz ${kernel_addr} - ${dtb_addr};
+

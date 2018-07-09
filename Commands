@@ -1,0 +1,4 @@
+setenv serverip 10.0.0.4;
+setenv ipaddr 10.0.0.111;
+setenv bootargs console=ttyO0,115200 ip=10.0.0.111:10.0.0.4::255.255.255.0 rw root=/dev/nfs nfsroot=10.0.0.4:/usr/rootfs;
+tftpboot 0x82000000 zImage;tftpboot 0x84000000 am335x-boneblack.dtb;bootz 0x82000000 - 0x84000000;
